@@ -8,40 +8,38 @@ package main;
 
 public class SlidingWindowProblem_MaxSumSubArrSizeK {
 
-	private static int[] arr = {1, 4, 2, 10, 23, 3, 1, 0, 20};
+	private static int[] arr = {-1, -4, -2, -10, -23, -3, -1, 0, -20};
 	
 	public static void main(String[] args) {
 		// Given info
 		
 		int arrSize = arr.length;
-		int windowSize = 5;
+		int windowSize = 3;
 		
 		//Let's first create few variable of use;
 		
 		int i=0;
 		int j=0;
 		int sumOfKElements =0;
-		int max =0;
+		int max =Integer.MIN_VALUE;
 		// Parent Loop
 		// creating window
 		
-		while(j<arrSize)
-		{
-			if(j-i+1 <= windowSize)
+		while(j<arrSize) {
+			sumOfKElements +=arr[j];
+			if(sumOfKElements>max)
 			{
-				sumOfKElements += arr[j];
-				max = sumOfKElements;
-				j++;			
+				max= sumOfKElements;
 			}
-			else {
-
-				sumOfKElements = sumOfKElements +arr[j++] - arr[i++]; 
-				if(sumOfKElements > max)
-				{
-					max = sumOfKElements;
-				}
-					
-			}				
+			if(j-i+1<windowSize)
+			{
+				j++;
+			}
+			else if(j-i+1 == windowSize)
+			{
+				sumOfKElements= sumOfKElements-arr[i++];
+				j++;
+			}
 		}
 		System.out.print("Largest Sub-Array Sum is : "+ max);
 	}
