@@ -1,8 +1,6 @@
 package main;
 
 import java.util.LinkedList;
-import java.util.Optional;
-import java.util.Queue;
 
 public class SlidingWindowProblem_FirstNegativeNumberInEveryWindowOfSizeK {
 
@@ -15,6 +13,11 @@ public class SlidingWindowProblem_FirstNegativeNumberInEveryWindowOfSizeK {
 		int arrSize = arr.length;
 		int windowSize = 3;
 		
+		if(windowSize<=0 || windowSize > arrSize)
+		{
+			System.out.println("wrong inputs");
+			return;
+		}
 		//Let's first create few variable of use;
 		
 		int i=0;
